@@ -90,4 +90,19 @@ def pantalones(request):
             return render (request, "AppTienda/inicio.html")
     else:
         formulario=ArticuloForm()
-        return render(request, "AppTienda/pantalones.html", {"formulario": formulario})   
+        return render(request, "AppTienda/pantalones.html", {"formulario": formulario})
+
+
+def busquedaClientes(request):
+    return render(request,"AppTienda/busquedaClientes.html")
+
+
+def buscar(request):
+    if request.GET["apellido"]:
+        apellido = request.GET["apellido"]
+        clientes=Cliente.objects.filter(apellido=apellido) #Traer de la base todos los clientes que tengan este apellido
+        
+        return render(request, "AppCoder/resultadosBusquedaClientes.html", {"clientes":clientes})
+    else:
+        return render(request, "AppCoder/busquedaClientes.html", {"mensaje":"Ingrese nuevamente apellido"})
+
