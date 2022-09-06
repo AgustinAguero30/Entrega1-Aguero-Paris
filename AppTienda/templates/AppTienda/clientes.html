@@ -1,0 +1,29 @@
+{% extends "AppTienda/Principal.html" %} <!-- Declaro que Principal es mi herencia-->
+
+{% load static %} <!-- Obligadamente va-->
+
+<!-- Titulo centrado-->
+{% block titulo %}
+    <div class="container">                   
+        <div class="masthead-subheading">Clientes</div>
+    </div>
+{% endblock %}
+
+<!-- Nombre Formulario-->
+
+{% block nombre_formularios %}
+    <h2 class="section-heading text-uppercase">Cargar nuevo cliente</h2>
+{% endblock %}
+
+<!-- Mostrar Formularios-->
+
+{% block formularios %}
+<form action="{% url 'clientes' %}" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
+
+    <table>
+        {{ formulario.as_table  }}
+    </table>
+
+    <input type="submit" value="Enviar">
+</form>
+{% endblock %}
