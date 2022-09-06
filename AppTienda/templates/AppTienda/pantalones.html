@@ -20,11 +20,14 @@
 {% block formularios %}
 
 <form action="{% url 'pantalones' %}" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
-
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    
     <table>
         {{ formulario.as_table  }}
     </table>
-
+    
     <input type="submit" value="Enviar">
+    </div>
+
 </form>
 {% endblock %}

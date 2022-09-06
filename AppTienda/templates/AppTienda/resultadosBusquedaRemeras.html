@@ -14,19 +14,20 @@
 {% block resultados %}
 
 
-{% if clientes %}
+{% if remeras %}
 
 <ul>
-    {% for cliente in clientes %}
-        <li>{{cliente.apellido}}</li>
-        <li>{{cliente.nombre}}</li>
-        <li>{{cliente.telefono}}</li>
+    {% for remera in remeras %}
+        <li>{{remera.modelo}}</li>
+        <li>{{remera.marca}}</li>
+        <li>{{remera.talle}}</li>
+        <li>{{remera.precio}}</li>
         <br>
     {% endfor %}    
 </ul>
 
 {% else %}
-    <p>No se encontraron clientes con ese apellido</p>
+    <p>No se encontraron remeras de esa marca</p>
 {% endif %}
 
 {% endblock %}

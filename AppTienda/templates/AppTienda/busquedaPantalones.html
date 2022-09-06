@@ -5,25 +5,25 @@
 <!-- Titulo centrado-->
 {% block titulo %}
     <div class="container">                   
-        <div class="masthead-subheading">Busqueda de Clientes</div>
+        <div class="masthead-subheading">Busqueda de Pantalones</div>
     </div>
 {% endblock %}
 
 <!-- Nombre Formulario-->
 
 {% block nombre_formularios %}
-    <h2 class="section-heading text-uppercase">Buscar cliente</h2>
+    <h2 class="section-heading text-uppercase">Buscar Articulo</h2>
 {% endblock %}
 
 <!-- Mostrar Formularios-->
 
 {% block formularios %}
 
-<h1>Formulario de Busqueda de Clientes</h1>
+<h1>Formulario de Busqueda de Pantalones</h1>
 
-<form action="{% url 'buscarCliente' %}" method="GET">
+<form action="{% url 'buscarPantalon' %}" method="GET">
 
-    <input type="text" name="apellido" id="apellido">
+    <input type="text" name="marca" id="marca">
 
     <input type="submit" value="Buscar">
 

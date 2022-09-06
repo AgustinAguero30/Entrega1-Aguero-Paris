@@ -14,19 +14,20 @@
 {% block resultados %}
 
 
-{% if clientes %}
+{% if pantalones %}
 
 <ul>
-    {% for cliente in clientes %}
-        <li>{{cliente.apellido}}</li>
-        <li>{{cliente.nombre}}</li>
-        <li>{{cliente.telefono}}</li>
+    {% for pantalon in pantalones %}
+        <li>{{pantalon.modelo}}</li>
+        <li>{{pantalon.marca}}</li>
+        <li>{{pantalon.talle}}</li>
+        <li>{{pantalon.precio}}</li>
         <br>
     {% endfor %}    
 </ul>
 
 {% else %}
-    <p>No se encontraron clientes con ese apellido</p>
+    <p>No se encontraron pantalones de esa marca</p>
 {% endif %}
 
 {% endblock %}
