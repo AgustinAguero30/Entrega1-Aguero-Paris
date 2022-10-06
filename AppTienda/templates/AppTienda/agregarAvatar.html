@@ -1,0 +1,31 @@
+{% extends "AppTienda/Principal.html" %} <!-- Declaro que Principal es mi herencia-->
+
+{% load static %} <!-- Obligadamente va-->
+
+<!-- Titulo centrado-->
+{% block titulo %}
+<div class="container">                   
+    <div class="masthead-subheading">Agregando Avatar de {{ usuario }}</div>
+</div>
+{% endblock %}
+
+<!-- Nombre Formulario-->
+
+{% block nombre_formularios %}
+<h2 class="section-heading text-uppercase">Ingresar imagen de Avatar</h2>
+{% endblock %}
+
+<!-- Mostrar Formularios-->
+
+{% block formularios %}
+<form action="{% url 'zapatillas' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    
+        <table>
+            {{ formulario.as_table  }}
+        </table>
+        
+        <button type="submit">Agregar Avatar</button>
+        </div>
+</form>
+{% endblock %}

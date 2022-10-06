@@ -31,5 +31,7 @@ urlpatterns = [
     #Logout
     path('logout/', LogoutView.as_view(template_name=('AppTienda/logout.html')), name='logout'),
     #Editar Usuario
-    path('editarPerfil/', editarPerfil, name="EditarPerfil"),
+    path('AppTienda/editarPerfil/', editarPerfil, name="editarPerfil"),
+    #Agregar Avatar
+    path('agregarAvatar/', agregarAvatar, name='agregarAvatar')
 ]
