@@ -29,21 +29,39 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'zapatillas' %}">Zapatillas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'remeras' %}">Remeras</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'pantalones' %}">Pantalones</a></li>
+                        {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Agregar Articulos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a style="color:black ; font-weight: bold; text-align: center;"  class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;"  class="nav-link" href="{% url 'zapatillas' %}">Zapatillas</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;"  class="nav-link" href="{% url 'remeras' %}">Remeras</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;"  class="nav-link" href="{% url 'pantalones' %}">Pantalones</a></li>
+                        </ul>
+                        </li>            
+                            {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Busqueda de Articulos
+                            Productos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <li><a style="color:black ; font-weight: bold; text-align: center;"  class="nav-link" href="{% url 'busquedaClientes' %}">Clientes</a></li>
-                              <li><a style="color:black ; font-weight: bold; text-align: center;" class="nav-link" href="{% url 'busquedaZapatillas' %}">Zapatillas</a></li>
-                              <li><a style="color:black ; font-weight: bold; text-align: center;" class="nav-link" href="{% url 'busquedaRemeras' %}">Remeras</a></li>
-                              <li><a style="color:black ; font-weight: bold; text-align: center;" class="nav-link" href="{% url 'busquedaPantalones' %}">Pantalones</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;"  class="nav-link" href="{% url 'busquedaClientes' %}">Clientes</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;" class="nav-link" href="{% url 'leerZapatillas' %}">Zapatillas</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;" class="nav-link" href="{% url 'busquedaRemeras' %}">Remeras</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;" class="nav-link" href="{% url 'busquedaPantalones' %}">Pantalones</a></li>
                             </ul>
-                          </li>
+                        </li>
+                            {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Desloguearse</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Editar Perfil</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrarse</a></li>
+                        
+                        {% endif %}
+
                     </ul>
                 </div>
             </div>

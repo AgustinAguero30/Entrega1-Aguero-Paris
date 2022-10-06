@@ -1,0 +1,18 @@
+{% extends "AppTienda/Principal.html" %} <!-- Declaro que Principal es mi herencia-->
+
+{% load static %} <!-- Obligadamente va-->
+
+<!-- Titulo centrado-->
+{% block titulo %}
+
+<div class="container">                    
+    <div class="masthead-heading text-uppercase">Te esperamos nuevamente !</div>
+</div>
+
+{% endblock %}
+
+{% block formularios %}
+<h2>Te has deslogueado correctamente</h2>
+{{mensaje}}
+
+{% endblock %}

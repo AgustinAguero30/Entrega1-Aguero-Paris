@@ -1,0 +1,31 @@
+{% extends "AppTienda/Principal.html" %} <!-- Declaro que Principal es mi herencia-->
+
+{% load static %} <!-- Obligadamente va-->
+
+<!-- Titulo centrado-->
+{% block titulo %}
+<div class="container">                   
+    <div class="masthead-subheading">Iniciar Sesion</div>
+</div>
+{% endblock %}
+
+<!-- Nombre Formulario-->
+
+{% block nombre_formularios %}
+<h2 class="section-heading text-uppercase">Ingrese datos</h2>
+{% endblock %}
+
+<!-- Mostrar Formularios-->
+
+{% block formularios %}
+<div style="text-align: center;">
+<form action="{% url 'login' %}" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
+
+        <table>
+            {{ formulario.as_table  }}
+        </table>
+        <button type="submit"> Iniciar Sesion </button>        
+
+</form>
+</div>
+{% endblock %}

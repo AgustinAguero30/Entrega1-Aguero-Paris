@@ -18,7 +18,7 @@ class Zapatilla(models.Model):
     precio=models.IntegerField()
 
     def __str__(self):
-        return self.modelo + " " + self.marca + " " + str(self.talle)   
+        return self.modelo + " " + self.marca
 
 class Remera(models.Model):
     modelo=models.CharField(max_length=50)
@@ -27,7 +27,7 @@ class Remera(models.Model):
     precio=models.IntegerField()
 
     def __str__(self):
-        return self.modelo + " " + self.marca + " " + str(self.talle)  
+        return self.modelo + " " + self.marca
 
 class Pantalon(models.Model):
     modelo=models.CharField(max_length=50)
@@ -36,4 +36,4 @@ class Pantalon(models.Model):
     precio=models.IntegerField()
 
     def __str__(self):
-        return self.modelo + " " + self.marca + " " + str(self.talle)   
+        return self.modelo + " " + self.marca
