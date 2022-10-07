@@ -1,9 +1,9 @@
 from django.urls import path
 from AppTienda.views import *
+from AppRegister.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    
     path('', inicio, name="inicio"),
     path('clientes/', clientes, name="clientes"),
     path('zapatillas/', zapatillas, name="zapatillas"),
@@ -27,11 +27,8 @@ urlpatterns = [
 
     #Login
     path('login/', login_request, name= 'login'),
-    path('register/', register, name= 'register'),
     #Logout
     path('logout/', LogoutView.as_view(template_name=('AppTienda/logout.html')), name='logout'),
-    #Editar Usuario
-    path('AppTienda/editarPerfil/', editarPerfil, name="editarPerfil"),
     #Agregar Avatar
-    path('agregarAvatar/', agregarAvatar, name='agregarAvatar')
+    path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),
 ]
