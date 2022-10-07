@@ -254,10 +254,26 @@ def editarPerfil(request):
 
     #Voy al html que me permite editar
         return render(request, "AppTienda/editarPerfil.html", {"formulario":miFormulario, "usuario":usuario})
+
+#CRUD Avatar
 @login_required
 def agregarAvatar(request):
     if request.method=='POST':
-        pass
+        formulario = AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            avatarViejo = Avatar.objects.filter(user=request.user)
+            if(len(avatarViejo)>0):
+                avatarViejo[0].delete()
+            avatar = Avatar(user = request.user, imagen= formulario.cleaned_data['imagen'])
+            avatar.save()
+            return render(request,"AppTienda/inicio.html", {'mensaje':"Avatar Agregado", "usuario":request.user, 'imagen': avatar.imagen.url})
+        else:
+            return render(request,"AppTienda/agregarAvatar.html", {"formulario":formulario, 'mensaje': "invalido"})
+
     else:
         formulario=AvatarForm()
-        return render(request,"AppCoder/agregarAvatar.html", {"formulario":formulario, "usuario":request.user})
+        return render(request,"AppTienda/agregarAvatar.html", {"formulario":formulario, "usuario":request.user})
+
+
+
+
