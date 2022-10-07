@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'AppTienda',
     'AppRegister',
     'AppLogin',
+    'AppUsers',
 ]
 
 MIDDLEWARE = [

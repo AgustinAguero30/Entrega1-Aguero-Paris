@@ -5,20 +5,20 @@
 <!-- Titulo centrado-->
 {% block titulo %}
 <div class="container">                   
-    <div class="masthead-subheading">Zapatillas</div>
+    <div class="masthead-subheading">Usuarios</div>
 </div>
 {% endblock %}
 
 <!-- Nombre Formulario-->
 
 {% block nombre_formularios %}
-<h2 class="section-heading text-uppercase">Editar nueva zapatilla</h2>
+<h2 class="section-heading text-uppercase">Editar nuevo Usuario</h2>
 {% endblock %}
 
 <!-- Mostrar Formularios-->
 
 {% block formularios %}
-<form action="{% url 'editarZapatilla' zapatilla.id %}" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
+<form action="{% url 'editarUsuario' usuario.id %}" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
     <div class="shadow-lg p-3 mb-5 bg-body rounded">
     
         <table>

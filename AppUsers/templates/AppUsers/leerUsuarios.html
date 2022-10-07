@@ -1,0 +1,45 @@
+{% extends "AppTienda/Principal.html" %} <!-- Declaro que Principal es mi herencia-->
+
+{% load static %} <!-- Obligadamente va-->
+
+<!-- Titulo centrado-->
+{% block titulo %}
+    <div class="container">                   
+        <div class="masthead-subheading">Listado de Usuarios</div>
+    </div>
+{% endblock %}
+
+<!-- Mostrar Formularios-->
+
+{% block resultados %}
+
+
+{% if usuarios %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for usuario in usuarios %}
+
+    <div class="col">
+        <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{usuario.username}}</h5>
+            <p class="card-text">Nombre: {{usuario.first_name}}</p>
+            <p class="card-text">Apellido: {{usuario.last_name}}</p>
+            <p class="card-text">Email: {{usuario.email}}</p>
+            {% if user.is_superuser %}
+            <a class='btn btn-success' href="{% url 'editarUsuario' usuario.id %}">Editar</a>
+            <a class='btn btn-danger' href="{% url 'eliminarUsuario' usuario.id %}">Eliminar</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% else %}
+    <p>No se encontraron Usuarios</p>
+{% endif %}
+
+{% endblock %}

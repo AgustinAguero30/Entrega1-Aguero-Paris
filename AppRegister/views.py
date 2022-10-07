@@ -6,10 +6,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
-#Register
-
 def register(request):
     if request.method=="POST":
         form =UserRegisterForm(request.POST)
@@ -21,8 +17,7 @@ def register(request):
             return render(request, "AppRegister/register.html" , { 'formulario':form, "mensaje":"incorrecto" })
     else:
         form=UserRegisterForm()
-        return render(request, "AppRegister/register.html" , { 'formulario':form })       
-
+        return render(request, "AppRegister/register.html" , { 'formulario':form })
 
 @login_required
 def editarPerfil(request):
@@ -35,7 +30,7 @@ def editarPerfil(request):
     if request.method == 'POST':
         miFormulario = UserEditForm(request.POST)
         if miFormulario.is_valid():
-            
+
             informacion = miFormulario.cleaned_data
 
             #Datos que se modifican
@@ -53,4 +48,4 @@ def editarPerfil(request):
         miFormulario=UserEditForm(instance=usuario)
 
     #Voy al html que me permite editar
-        return render(request, "AppRegister/editarPerfil.html", {"formulario":miFormulario, "usuario":usuario})
+        return render(request, "AppRegister/editarPerfil.html", {"formulario":miFormulario, "usuario":usuario})        

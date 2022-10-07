@@ -24,8 +24,7 @@ urlpatterns = [
     path('AppTienda/', include("AppTienda.urls")),
     path('AppRegister/', include("AppRegister.urls")),
     path('AppLogin/', include("AppLogin.urls")),
-    
-
+    path('AppUsers/', include("AppUsers.urls")),
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

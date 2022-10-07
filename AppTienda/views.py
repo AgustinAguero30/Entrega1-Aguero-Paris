@@ -4,6 +4,7 @@ from AppTienda.forms import *
 from django.contrib.auth.decorators import login_required
 
 
+
 # Create your views here.
 
 #####-----------Llamo al render y le pego los HTML-----------####
@@ -13,7 +14,6 @@ def inicio(request):
 
 def clientes(request):
     return render(request,"AppTienda/clientes.html",{"avatar":obtenerAvatar(request)})
-
 
 def zapatillas(request):
     return render(request,"AppTienda/zapatillas.html",{"avatar":obtenerAvatar(request)})
