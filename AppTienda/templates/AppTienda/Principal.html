@@ -28,7 +28,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                         {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,7 +55,16 @@
                             {% if user.is_authenticated %}
                             <h4>Hola {{ user.username }}</h4>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Desloguearse</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'editarPerfil' %}">Editar Perfil</a></li>
+                        <img src="{{ avatar }}" height="30px" alt="">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Perfil
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a style="color:black ; font-weight: bold; text-align: center;"  class="nav-link" href="{% url 'editarPerfil' %}">Editar Perfil</a></li>
+                            <li><a style="color:black ; font-weight: bold; text-align: center;" class="nav-link" href="{% url 'agregarAvatar' %}">Cambiar Avatar</a></li>
+                            </ul>
+                        </li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrarse</a></li>

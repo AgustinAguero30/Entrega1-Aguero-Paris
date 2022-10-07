@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AppTienda',
     'AppRegister',
+    'AppLogin',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/AppTienda/login'
+LOGIN_URL = '/AppLogin/login'
 
 #Aca le decimos al proyecto donde estan las imagenes
 MEDIA_URL = '/media/'

@@ -1,34 +1,28 @@
 from django.shortcuts import render
 from AppTienda.models import *
 from AppTienda.forms import *
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
 #####-----------Llamo al render y le pego los HTML-----------####
 @login_required
 def inicio(request):
-    lista= Avatar.objects.filter(user=request.user)
-    if len(lista)!=0:
-        avatar=lista[0].imagen.url
-    else:
-        avatar= ""
-    return render(request,"AppTienda/inicio.html", {"avatar":avatar})
+    return render(request,"AppTienda/inicio.html", {"avatar":obtenerAvatar(request)})
 
 def clientes(request):
-    return render(request,"AppTienda/clientes.html")
+    return render(request,"AppTienda/clientes.html",{"avatar":obtenerAvatar(request)})
 
 
 def zapatillas(request):
-    return render(request,"AppTienda/zapatillas.html")
+    return render(request,"AppTienda/zapatillas.html",{"avatar":obtenerAvatar(request)})
 
 def remeras(request):
-    return render(request,"AppTienda/remeras.html")
+    return render(request,"AppTienda/remeras.html",{"avatar":obtenerAvatar(request)})
 
 def pantalones(request):
-    return render(request,"AppTienda/pantalones.html")
+    return render(request,"AppTienda/pantalones.html",{"avatar":obtenerAvatar(request)})
 
 #####----------- Crear formularios para guardar en la base de datos -----------####
 
@@ -103,16 +97,16 @@ def pantalones(request):
 
 
 def busquedaClientes(request):
-    return render(request,"AppTienda/busquedaClientes.html")
+    return render(request,"AppTienda/busquedaClientes.html",{"avatar":obtenerAvatar(request)})
 
 def busquedaZapatillas(request):
-    return render(request,"AppTienda/busquedaZapatillas.html")
+    return render(request,"AppTienda/busquedaZapatillas.html",{"avatar":obtenerAvatar(request)})
 
 def busquedaRemeras(request):
-    return render(request,"AppTienda/busquedaRemeras.html")
+    return render(request,"AppTienda/busquedaRemeras.html",{"avatar":obtenerAvatar(request)})
 
 def busquedaPantalones(request):
-    return render(request,"AppTienda/busquedaPantalones.html")
+    return render(request,"AppTienda/busquedaPantalones.html",{"avatar":obtenerAvatar(request)})
 
 
 def buscarCliente(request):
@@ -185,28 +179,6 @@ def eliminarZapatilla(request, id):
 
 #---------------------------------------------------------------------------------------------------#
 
-
-#Login
-def login_request(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            usu=request.POST['username']
-            clave=request.POST['password']
-
-            usuario= authenticate(username=usu, password=clave)
-            if usuario is not None:
-                login(request, usuario)
-                return render(request, "AppTienda/inicio.html")
-            else:
-                return render(request, "AppTienda/login.html", {"formulario":form, "mensaje":"incorrecto"})
-        else:
-            return render(request, "AppTienda/login.html", {"formulario":form, "mensaje":"incorrecto"})
-
-    else:
-        form = AuthenticationForm()
-        return render(request, "AppTienda/login.html", {"formulario":form})
-
 #CRUD Avatar
 @login_required
 def agregarAvatar(request):
@@ -226,7 +198,10 @@ def agregarAvatar(request):
         formulario=AvatarForm()
         return render(request,"AppTienda/agregarAvatar.html", {"formulario":formulario, "usuario":request.user})
 
-
-
-
-
+def obtenerAvatar(request):
+    lista= Avatar.objects.filter(user=request.user)
+    if len(lista)!=0:
+        avatar=lista[0].imagen.url
+    else:
+        avatar= ""
+    return avatar  

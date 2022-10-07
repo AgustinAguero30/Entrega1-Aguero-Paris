@@ -27,6 +27,8 @@
             <p class="card-text">Modelo: {{zapatilla.modelo}}</p>
             <p class="card-text">Talle: {{zapatilla.talle}}</p>
             <p class="card-text">Precio: {{zapatilla.precio}}</p>
+            <a class='btn btn-success' href="{% url 'editarZapatilla' zapatilla.id %}">Editar</a>
+            <a class='btn btn-danger' href="{% url 'eliminarZapatilla' zapatilla.id %}">Eliminar</a>
         </div>
         </div>
     </div>

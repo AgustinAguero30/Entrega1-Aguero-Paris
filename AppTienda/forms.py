@@ -1,6 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 
 #Como se visualizan los campos de nuestros formularios en las templates.
 
@@ -17,5 +15,5 @@ class ArticuloForm(forms.Form):
     precio=forms.IntegerField()
 
 class AvatarForm(forms.Form):
-    imagen= forms.ImageField(label="Imagen")
+    imagen= forms.ImageField(label="Imagen")    
 

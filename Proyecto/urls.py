@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('AppTienda/', include("AppTienda.urls")),
     path('AppRegister/', include("AppRegister.urls")),
+    path('AppLogin/', include("AppLogin.urls")),
+    
 
 ]
 

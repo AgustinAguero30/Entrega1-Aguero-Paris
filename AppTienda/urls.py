@@ -1,7 +1,5 @@
 from django.urls import path
 from AppTienda.views import *
-from AppRegister.views import *
-from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', inicio, name="inicio"),
@@ -25,10 +23,6 @@ urlpatterns = [
     path('editarZapatilla/<id>', editarZapatilla, name="editarZapatilla"),
     path('eliminarZapatilla/<id>', eliminarZapatilla, name="eliminarZapatilla"),
 
-    #Login
-    path('login/', login_request, name= 'login'),
-    #Logout
-    path('logout/', LogoutView.as_view(template_name=('AppTienda/logout.html')), name='logout'),
     #Agregar Avatar
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),
 ]
