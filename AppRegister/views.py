@@ -5,6 +5,7 @@ from AppRegister.forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from AppTienda.views import obtenerAvatar
 
 def register(request):
     if request.method=="POST":
@@ -37,15 +38,17 @@ def editarPerfil(request):
             usuario.email = informacion['email']
             usuario.password1 = informacion['password1']
             usuario.password2 = informacion['password2']
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
             usuario.save()
 
             return render(request, "AppTienda/inicio.html",{"mensaje": "Se ha modificado la contraseña correctamente"}) #Vuelvo al inicio o a donde se desee
         else:
-            return render(request, "AppRegister/editarPerfil.html",{"formulario":miFormulario, "usuario":usuario, "mensajes": "Formulario invalido, vuelva a ingresar"} )
+            return render(request, "AppRegister/editarPerfil.html",{"formulario":miFormulario, "usuario":usuario, "mensajes": "Formulario invalido, vuelva a ingresar","avatar": obtenerAvatar(request)})
 #En el caso que no sea POST
     else:
         #Creo el formulario de los datos que voy a modificar
         miFormulario=UserEditForm(instance=usuario)
 
     #Voy al html que me permite editar
-        return render(request, "AppRegister/editarPerfil.html", {"formulario":miFormulario, "usuario":usuario})        
+        return render(request, "AppRegister/editarPerfil.html", {"formulario":miFormulario, "usuario":usuario,"avatar": obtenerAvatar(request)})        

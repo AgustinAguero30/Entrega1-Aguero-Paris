@@ -18,6 +18,7 @@ class Zapatilla(models.Model):
     marca=models.CharField(max_length=50)
     talle=models.IntegerField()
     precio=models.IntegerField()
+    
 
     def __str__(self):
         return self.modelo + " " + self.marca
@@ -27,6 +28,7 @@ class Remera(models.Model):
     marca=models.CharField(max_length=50)
     talle=models.IntegerField()
     precio=models.IntegerField()
+
 
     def __str__(self):
         return self.modelo + " " + self.marca

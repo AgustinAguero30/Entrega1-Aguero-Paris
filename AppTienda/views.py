@@ -203,5 +203,5 @@ def obtenerAvatar(request):
     if len(lista)!=0:
         avatar=lista[0].imagen.url
     else:
-        avatar= ""
+        avatar= "/media/avatares/NoAvatar.png"
     return avatar  

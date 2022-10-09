@@ -10,9 +10,15 @@
 {% endblock %}
 
 <!-- Nombre Formulario-->
-
+{% block datos_perfil %}
+<img src="{{ avatar }}" height="60px" alt="">
+<h5 class="card-title">Nombre de Usuario: {{usuario.username}}</h5>
+<p class="card-text">Nombre: {{usuario.first_name}}</p>
+<p class="card-text">Apellido: {{usuario.last_name}}</p>
+<p class="card-text">Email: {{usuario.email}}</p>
+{% endblock %}
 {% block nombre_formularios %}
-<h2 class="section-heading text-uppercase">Ingrese datos</h2>
+<h2 class="section-heading text-uppercase">Editar datos del perfil</h2>
 {% endblock %}
 
 <!-- Mostrar Formularios-->

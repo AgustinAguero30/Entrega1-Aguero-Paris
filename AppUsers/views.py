@@ -3,10 +3,17 @@ from AppTienda.models import *
 from AppTienda.forms import *
 from django.contrib.auth.decorators import login_required
 from AppUsers.forms import *
+from AppTienda.views import obtenerAvatar
 #Users CRUD
 #Read
 def leerUsuarios(request):
     usuarios=User.objects.all()
+    for usuario in usuarios:
+        lista= Avatar.objects.filter(user=usuario)
+        if len(lista)!=0:
+            usuario.avatar=lista[0].imagen.url
+        else:
+            usuario.avatar= "/media/avatares/NoAvatar.png"
     return render(request, "AppUsers/leerUsuarios.html", {"usuarios":usuarios})
 #Update
 @login_required
