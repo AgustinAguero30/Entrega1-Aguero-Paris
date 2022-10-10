@@ -22,6 +22,7 @@ urlpatterns = [
     path('leerZapatillas/', leerZapatillas, name="leerZapatillas"),
     path('editarZapatilla/<id>', editarZapatilla, name="editarZapatilla"),
     path('eliminarZapatilla/<id>', eliminarZapatilla, name="eliminarZapatilla"),
+    path('infoZapatilla/<id>', infoZapatilla, name="infoZapatilla"),
 
     #Agregar Avatar
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar'),

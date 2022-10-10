@@ -14,24 +14,26 @@
 {% block resultados %}
 
 
-{% if zapatillas %}
+{% if zapatilla %}
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for zapatilla in zapatillas %}
-
     <div class="col">
         <div class="card">
         <img src="/media/{{ zapatilla.imagen }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{zapatilla.marca}}</h5>
+            <p class="card-text">Modelo: {{zapatilla.modelo}}</p>
+            <p class="card-text">Talle: {{zapatilla.talle}}</p>
             <p class="card-text">Precio: ${{zapatilla.precio}}</p>
-            <a class='btn btn-outline-info' href="{% url 'infoZapatilla' zapatilla.id %}">Leer Mas</a>
+            <p class="card-text">Autor: {{ zapatilla.user }}</p>
+            <p class="card-text">Fecha de carga: {{ date_joined }}</p>
+            {% if user.is_superuser %}
+            <a class='btn btn-success' href="{% url 'editarZapatilla' zapatilla.id %}">Editar</a>
+            <a class='btn btn-danger' href="{% url 'eliminarZapatilla' zapatilla.id %}">Eliminar</a>
+            {% endif %}
         </div>
         </div>
     </div>
-
-    {% endfor %}
-
 </div>
 {% else %}
     <p>No se encontraron zapatillas de esa marca</p>

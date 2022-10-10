@@ -57,7 +57,7 @@ def zapatillas(request):
             talle=informacion["talle"]
             precio=informacion["precio"]
             imagen=informacion["imagen"]     
-            zapatilla=Zapatilla(modelo=modelo, marca=marca,talle=talle,precio=precio,imagen=imagen)           
+            zapatilla=Zapatilla(modelo=modelo, marca=marca,talle=talle,precio=precio,imagen=imagen,user= request.user)           
             zapatilla.save()
             return render (request, "AppTienda/leerZapatillas.html", {"mensaje" : "Zapatilla Cargada"})
         else:
@@ -153,6 +153,7 @@ def buscarPantalon(request):
 def leerZapatillas(request):
     zapatillas=Zapatilla.objects.all()
     return render(request, "AppTienda/leerZapatillas.html", {"zapatillas":zapatillas})
+
 #Update
 @login_required
 def editarZapatilla(request, id):
@@ -181,6 +182,9 @@ def eliminarZapatilla(request, id):
     zapatillas=Zapatilla.objects.all()
     return render(request,"AppTienda/leerZapatillas.html", {"zapatillas":zapatillas})#Mostrar
 
+def infoZapatilla(request, id):
+    zapatilla=Zapatilla.objects.get(id=id)
+    return render(request, "AppTienda/infoZapatilla.html", {"zapatilla":zapatilla})
 #---------------------------------------------------------------------------------------------------#
 
 #CRUD Avatar
