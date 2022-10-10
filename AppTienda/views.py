@@ -49,16 +49,19 @@ def clientes(request):
 def zapatillas(request):
     if request.method == "POST":
 #Ya que los articulos tienen informacion similar, los juntamos en un solo formulario.         
-        form=ArticuloForm(request.POST)
+        form=ArticuloForm(request.POST, request.FILES)
         if form.is_valid():
             informacion= form.cleaned_data
             modelo=informacion["modelo"]
             marca=informacion["marca"]
             talle=informacion["talle"]
-            precio=informacion["precio"]      
-            zapatilla=Zapatilla(modelo=modelo, marca=marca,talle=talle,precio=precio)           
+            precio=informacion["precio"]
+            imagen=informacion["imagen"]     
+            zapatilla=Zapatilla(modelo=modelo, marca=marca,talle=talle,precio=precio,imagen=imagen)           
             zapatilla.save()
-            return render (request, "AppTienda/inicio.html", {"mensaje" : "Zapatilla Cargada"})
+            return render (request, "AppTienda/leerZapatillas.html", {"mensaje" : "Zapatilla Cargada"})
+        else:
+            return render (request, "AppTienda/inicio.html", {"mensaje" : "ERROR: No cargada"})
     else:
         formulario=ArticuloForm()
         return render(request, "AppTienda/zapatillas.html", {"formulario": formulario})
@@ -155,18 +158,19 @@ def leerZapatillas(request):
 def editarZapatilla(request, id):
     zapatilla=Zapatilla.objects.get(id=id)
     if request.method=="POST":
-        form=ArticuloForm(request.POST)
+        form=ArticuloForm(request.POST, request.FILES)
         if form.is_valid():
             informacion= form.cleaned_data
             zapatilla.modelo=informacion["modelo"]
             zapatilla.marca=informacion["marca"]
             zapatilla.talle=informacion["talle"]
-            zapatilla.precio=informacion["precio"]                
+            zapatilla.precio=informacion["precio"]
+            zapatilla.imagen=informacion["imagen"]        
             zapatilla.save()
-            zapatillas=Zapatilla.objects.all()
+            zapatillas=Zapatilla.objects.all()     
             return render (request, "AppTienda/leerZapatillas.html", {"zapatillas":zapatillas})
     else:
-        form=ArticuloForm(initial={"modelo":zapatilla.modelo, "marca":zapatilla.marca, "talle":zapatilla.talle, "precio":zapatilla.precio})
+        form=ArticuloForm(initial={"modelo":zapatilla.modelo, "marca":zapatilla.marca, "talle":zapatilla.talle, "precio":zapatilla.precio, 'imagen':zapatilla.imagen})
         return render(request, "AppTienda/editarZapatilla.html", {"formulario":form, "zapatilla":zapatilla})
 #Delete
 @login_required
@@ -184,6 +188,7 @@ def eliminarZapatilla(request, id):
 def agregarAvatar(request):
     if request.method=='POST':
         formulario = AvatarForm(request.POST, request.FILES)
+        print(formulario)
         if formulario.is_valid():
             avatarViejo = Avatar.objects.filter(user=request.user)
             if(len(avatarViejo)>0):

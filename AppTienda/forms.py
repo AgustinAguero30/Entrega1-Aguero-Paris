@@ -13,6 +13,7 @@ class ArticuloForm(forms.Form):
     marca=forms.CharField(max_length=50)
     talle=forms.IntegerField()
     precio=forms.IntegerField()
+    imagen= forms.ImageField(label="Imagen")    
 
 class AvatarForm(forms.Form):
     imagen= forms.ImageField(label="Imagen")    

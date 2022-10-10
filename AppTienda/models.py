@@ -18,6 +18,8 @@ class Zapatilla(models.Model):
     marca=models.CharField(max_length=50)
     talle=models.IntegerField()
     precio=models.IntegerField()
+    #Subcarpeta zapatillas de media
+    imagen= models.ImageField(upload_to='productos', null=True)
     
 
     def __str__(self):
@@ -28,7 +30,6 @@ class Remera(models.Model):
     marca=models.CharField(max_length=50)
     talle=models.IntegerField()
     precio=models.IntegerField()
-
 
     def __str__(self):
         return self.modelo + " " + self.marca

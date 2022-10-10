@@ -18,7 +18,7 @@
 <!-- Mostrar Formularios-->
 
 {% block formularios %}
-<form action="{% url 'editarZapatilla' zapatilla.id %}" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
+<form action="{% url 'editarZapatilla' zapatilla.id %}" enctype="multipart/form-data" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
     <div class="shadow-lg p-3 mb-5 bg-body rounded">
     
         <table>
