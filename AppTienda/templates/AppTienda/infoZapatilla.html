@@ -22,11 +22,11 @@
         <img src="/media/{{ zapatilla.imagen }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{zapatilla.marca}}</h5>
-            <p class="card-text">Modelo: {{zapatilla.modelo}}</p>
-            <p class="card-text">Talle: {{zapatilla.talle}}</p>
-            <p class="card-text">Precio: ${{zapatilla.precio}}</p>
-            <p class="card-text">Autor: {{ zapatilla.user }}</p>
-            <p class="card-text">Fecha de carga: {{ zapatilla.date}}</p>
+            <p class="card-text"><b>Modelo: </b> {{zapatilla.modelo}}</p>
+            <p class="card-text"><b>Talle: </b> {{zapatilla.talle}}</p>
+            <p class="card-text"><b>Precio: </b> ${{zapatilla.precio}}</p>
+            <p class="card-text"><b>Autor: </b> {{ zapatilla.user }}</p>
+            <p class="card-text"><small class="text-muted">Fecha de carga: {{ zapatilla.date}}</small></p>
             {% if user.is_superuser %}
             <a class='btn btn-success' href="{% url 'editarZapatilla' zapatilla.id %}">Editar</a>
             <a class='btn btn-danger' href="{% url 'eliminarZapatilla' zapatilla.id %}">Eliminar</a>

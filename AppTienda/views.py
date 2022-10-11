@@ -52,7 +52,8 @@ def buscarZapatilla(request):
         
         return render(request, "AppTienda/resultadosBusquedaZapatillas.html", {"zapatillas":zapatillas})
     else:
-        return render(request, "AppTienda/busquedaZapatillas.html", {"mensaje":"Ingrese nuevamente marca"})
+        zapatillas=Zapatilla.objects.all()
+        return render(request, "AppTienda/leerZapatillas.html", {"mensaje":"No se encontro marca","zapatillas":zapatillas})
 
 #Zapatillas CRUD
 #Read
@@ -73,7 +74,7 @@ def editarZapatilla(request, id):
             zapatilla.talle=informacion["talle"]
             zapatilla.precio=informacion["precio"]
             zapatilla.imagen=informacion["imagen"]
-            date=datetime.now().date()        
+            zapatilla.date=datetime.now().date()        
             zapatilla.save()
             zapatillas=Zapatilla.objects.all()     
             return render (request, "AppTienda/leerZapatillas.html", {"zapatillas":zapatillas})

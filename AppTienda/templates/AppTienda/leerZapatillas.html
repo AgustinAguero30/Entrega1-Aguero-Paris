@@ -15,7 +15,11 @@
 
 
 {% if zapatillas %}
-
+<form class="d-flex" role="search" action="{% url 'buscarZapatilla' %}" method="GET" style="text-align: center;">
+    <input class="search" type="search" placeholder="Buscar Marca" aria-label="Search" name="marca" id="marca">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+<p>{{ mensaje }}</p>
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for zapatilla in zapatillas %}
 
@@ -24,7 +28,7 @@
         <img src="/media/{{ zapatilla.imagen }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{zapatilla.marca}}</h5>
-            <p class="card-text">Precio: ${{zapatilla.precio}}</p>
+            <p class="card-text"><b>Precio: </b> ${{zapatilla.precio}}</p>
             <a class='btn btn-outline-info' href="{% url 'infoZapatilla' zapatilla.id %}">Leer Mas</a>
         </div>
         </div>
