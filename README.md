@@ -15,127 +15,68 @@
 4. Ya esta listo para su visualizacion en la IP Local
 
 ---------------------------------Funcionalidades de nuestra APP------------------------------------------------------------------------
+
+ Tienda en la cual se pueden registar Usuarios, agregar un avatar personalizado, editar informacion de usuario, editar Avatar.
+ Agregar Zapatilla, Buscar Zapatilla, Editar Zapatilla, Leer Mas.
  
-Mostrar en un Inicio las distintas templates las cuales permite: 
-Generar carga de articulos en nuestra base de datos.
-Busqueda de articulos cargados mediante un identificador.
+Botones:
+ 
+Boton: Tienda | Usuario:Deslogueado	Redirigir a Login	Redirige a Login
+Boton: Tienda | Usuario:Logueado	Redirigir a Inicio	Redirige a Inicio
 
-Descripcion de views.py dentro de AppTienda
+Boton: Comunidad | Usuario:Deslogueado	Redirigir a Listado de Usuarios	Redirige a Listado de Usuario
+Boton: Comunidad | Usuario:Logueado	Redirigir a Listado de Usuarios	Redirige a Listado de Usuario
 
-- Incluye las definiciones de mostrar los templates correspondiente renderizados cuando son llamados mediante urls
+Boton: Zapatilla | Usuario:Deslogueado	Redirigir a Zapatillas	Redirige a Zapatillas
+Boton: Zapatilla  | Usuario:Logueado	Redirigir a Zapatillas	Redirige a Zapatillas
 
-Ejemplo:
+Boton: Iniciar Sesion | Usuario: Deslogueado	Tiene que aparecer y redirigir a Login	Aparece y Redirige a Login
+Boton: Iniciar Sesion | Usuario: Logueado	No tiene que aparecer	No Aparece
 
-def clientes(request):
-    return render(request,"AppTienda/clientes.html")
+Boton: Registrarse | Usuario: Deslogueado 	Tiene que aparecer y redirige a Register	Aparece y Redirige a Register
+Boton: Registrarse | Usuario: Logueado	No tiene que aparecer	No Aparece
 
+Boton: Desloguearse | Usuario: Deslogueado	No tiene que aparecer	No Aparece
+Boton: Desloguearse | Usuario: Logueado	Tiene que aparecer,  tiene que desloguear y avisar por pantalla	Aparece, desloguea y avisa por pantalla
 
-- Incluye ademas las definiciones las cuales reciben mediante POST una informacion cargada en un formulario para posteriormente ser guardadas en la base de datos.
+Boton: About Us | Usuario: Deslogueado	Tiene que aparecer y redirigir a aboutUs	Aparece y redirge a aboutUs
+Boton: About Us | Usuario: Logueado	Tiene que aparecer y redirigir a aboutUs	Aparece y redirge a aboutUs
 
-Ejemplo:
+Boton: Agregar Articulo | Usuario: Deslogueado	No tiene que aparecer	No Aparece
+Boton: Agregar Articulo | Usuario: Logueado	Despliega Submenu y muestra opcion: Zapatilla	Despliega Submenu y muetra boton Zapatilla
 
-def clientes(request):
-    if request.method == "POST": #Confirma si recibe la informacion por POST, valida el formulario, limpia informacion y guarda en variable
-        form=ClientesForm(request.POST)
-        if form.is_valid():
-            informacion= form.cleaned_data
-            nombre=informacion["nombre"]
-            apellido=informacion["apellido"]
-            telefono=informacion["telefono"]
-            mail=informacion["mail"]
-#Guardamos la informacion obtenida en una variable         
-            cliente=Cliente(nombre=nombre, apellido=apellido,telefono=telefono,mail=mail)
-#Guardamos en la base de datos con save y devolvemos a la pagina inicio cuando todo este correctamente cargado.            
-            cliente.save()
-            return render (request, "AppTienda/inicio.html", {"mensaje" : "Cliente Cargado"})
+Boton:  Zapatillas (Desplegado de Agregar Articulo) | Usuario: Logueado	Redirigir a Cargar nueva Zapatilla	Redirige a Cargar nueva Zapatilla
 
-#Si no se cargo correctamente, vuelve a mostrar el formulario a cargar vacio 
-    else:
-        formulario=ClientesForm()
-        return render(request, "AppTienda/clientes.html", {"formulario": formulario})
+Boton: Perfil | Usuario: Deslogueado	No tiene que aparecer	No Aparece
+Boton: Perfil | Usuario: Logueado	Despliega Submenu y muestra opcion: Editar Perfil / Cambiar Avatar	Despliega Submenu y muetra Editar Perfil / Cambiar Avatar
 
-- Incluye las definiciones de buscar en nuestra base de datos informacion que el usuario proporciona mediante un formulario de consulta.
+Boton:  Zapatillas (Desplegado de Editar Perfil) | Usuario: Logueado	Redirigir a Editar Perfil	Redirige a Editar Perfil
+Boton:  Zapatillas (Desplegado de Cambiar Avatar) | Usuario: Logueado	Redirigir a Cambiar Avatar	Redirige a Cambiar Avatar
 
-Ejemplo:
+Boton: Buscar en leerZapatillas | Usuario: Deslogueado	Redirigir a listado filtrado por marca o Solicitar nuevo ingreso si es incorrecto	Redirige en caso de ser correcto y avisa por caso contrario
+Boton: Buscar en leerZapatillas | Usuario: Logueado	Redirigir a listado filtrado por marca o Solicitar nuevo ingreso si es incorrecto	Redirige en caso de ser correcto y avisa por caso contrario
 
-def buscarCliente(request):
-    if request.GET["apellido"]:
-        apellido = request.GET["apellido"]
-        clientes=Cliente.objects.filter(apellido=apellido) #Traer de la base todos los clientes que tengan este apellido
-        
-        return render(request, "AppTienda/resultadosBusquedaClientes.html", {"clientes":clientes}) #Envia informacion encontrada a template para poder trabajar en como se mostrara los datos
-    else:
-        return render(request, "AppTienda/busquedaClientes.html", {"mensaje":"Ingrese nuevamente apellido"}) # Si no encuentra, envia nuevamente a la pagina de busqueda y envia mensaje para su reingreso de informacion
+Boton: LeerMas en leerZapatillas	Redirigir a InfoZapatilla	Redige a Info Zapatilla
 
+En About Us, Boton Tienda	Redirigir a Tienda	Redirige a Tienda
+En About Us, Boton Inicio	Redirigir a Tienda	Redirige a Tienda
+En About Us, Agustin Aguero	Situa en informacion de Agustin Aguero	Situa correctamente a Agustin Aguero
+En About Us, Agustin Paris	Situa en informacion de Agustin Paris	Situa correctamente a Agustin Paris
+En About Us, Boton: Git	Redirige a perfil correspondiente del boton	Redirige correctamente dependiendo la persona
+En About Us, Agustin Paris Boton: Linkedin	Redirige a perfil correspondiente del boton	Redirige correctamente dependiendo la persona
 
-Descripcion de models.py dentro de AppTienda
+En Login, Iniciar Sesion	Redirigir a Pantalla de Bievenida	Redirige a pantalla de Bienvendida
 
-- Aqui generamos los esqueletos de las tablas que se guardaran en nuestra base de datos.
+En infoZapatilla siendo Admin Boton: Editar, Eliminar	Solamente a admin mostrar. Eliminar: Borra zapatilla y redirige a leerZapatilla, Editar: Redirige a Editar zapatilla	Muestra solamente a Admin, redirige correctamente y elimina objeto con el boton eliminar
 
-Ejemplo:
+--------------------------------------- Forma de Trabajo en equipo ---------------------------------
 
-class Cliente(models.Model):
-    nombre=models.CharField(max_length=50)
-    apellido=models.CharField(max_length=50)
-    telefono=models.IntegerField()
-    mail=models.EmailField()
+Nos coordinamos para realizar reuniones en la cual se avanzaba a la par, se pensaron las funcionalidades en conjunto. Lo comun era que uno del equipo comparta pantalla y se distribuyeran las tareas. Luego de comprobar la funcionalidad, se juntaba el codigo y se limpiaba el mismo.
 
-    def __str__(self):
-        return self.nombre + " " + self.apellido   # Como se nombra si es llamado
-
-Descripcion de forms.py dentro de AppTienda
-
-- Aqui generamos las vistas de como se mostraran los campos de nuestros formularios en las templates
-
-class ClientesForm(forms.Form):
-    nombre=forms.CharField(max_length=50)
-    apellido=forms.CharField(max_length=50)
-    telefono=forms.IntegerField()
-    mail=forms.EmailField()
-
-Descripcion de urls.py dentro de AppTienda
-
-- Aqui generamos los path y a que definicion llamaria mediante nuestro Proyecto desde la web.
-
-Ejemplo:
-
-"http://127.0.0.1:8000/AppTienda/clientes/ (Mediante esta url, llama a la def clientes donde esta codificada la funcion "Cargar cliente"
-
-    path('', inicio, name="inicio"),
-    path('clientes/', clientes, name="clientes"),
-    path('zapatillas/', zapatillas, name="zapatillas"),
-    path('remeras/', remeras, name="remeras"),
-    path('pantalones/', pantalones, name="pantalones"),
-
-
-
-
--------------------------------- Descripcion de la web ----------------------------------------
-
-Desde "http://127.0.0.1:8000/AppTienda/" (Inicio)
-
-Funcionalidad de Botonera: Tienda / Inicio / Clientes / Zapatillas / Remeras / Pantalones / Busqueda de Articulos (Clientes Zapatillas Remeras Pantalones)
-
-Tienda: Redirige a Inicio
-Inicio: Redirige a Inicio
-
---------
-
-Clientes: Muestra formulario de carga de clientes
-Zapatillas: Muestra formulario de carga de zapatillas
-Remeras: Muestra formulario de carga de remeras
-Pantalones: Muestra formulario de carga de pantalones
-
---------
-
-Busqueda de Articulos (Menu desplegable)
-
-Clientes: Muestra formulario de busqueda de clientes por apellido. (Lista con Apellido, Nombre, Telefono)
-Zapatillas: Muestra formulario de busqueda de zapatillas por marca. (Lista con Modelo, Marca, Talle, Precio)
-Remeras: Muestra formulario de busqueda de remeras por marca. (Lista con Modelo, Marca, Talle, Precio) **Talle 1: S, Talle 2: M, Talle 3: L, Talle 4: XL, Talle 5: XXL
-Pantalones: Muestra formulario de busqueda de pantalones por marca. (Lista con Modelo, Marca, Talle, Precio)
+Tuvimos la oportunidad de poder avanzar siempre en sincronia, por lo que nos sirvio para asentar el conocimiento y despejando las dudas que surgian.
 
 -----------------------------------------Autores------------------------------------------------
-Agustin Aguero 
-Agustin Paris
 
+
+Agustin Aguero / 
+Agustin Paris
