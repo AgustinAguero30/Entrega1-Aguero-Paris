@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from AppTienda.models import *
 from AppTienda.forms import *
@@ -56,8 +57,9 @@ def zapatillas(request):
             marca=informacion["marca"]
             talle=informacion["talle"]
             precio=informacion["precio"]
-            imagen=informacion["imagen"]     
-            zapatilla=Zapatilla(modelo=modelo, marca=marca,talle=talle,precio=precio,imagen=imagen,user= request.user)           
+            imagen=informacion["imagen"]
+            date=datetime.now().date() 
+            zapatilla=Zapatilla(modelo=modelo, marca=marca,talle=talle,precio=precio,imagen=imagen,date=date,user= request.user)           
             zapatilla.save()
             return render (request, "AppTienda/leerZapatillas.html", {"mensaje" : "Zapatilla Cargada"})
         else:
@@ -166,7 +168,8 @@ def editarZapatilla(request, id):
             zapatilla.marca=informacion["marca"]
             zapatilla.talle=informacion["talle"]
             zapatilla.precio=informacion["precio"]
-            zapatilla.imagen=informacion["imagen"]        
+            zapatilla.imagen=informacion["imagen"]
+            date=datetime.now().date()        
             zapatilla.save()
             zapatillas=Zapatilla.objects.all()     
             return render (request, "AppTienda/leerZapatillas.html", {"zapatillas":zapatillas})

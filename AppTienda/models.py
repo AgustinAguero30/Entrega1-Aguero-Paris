@@ -20,6 +20,7 @@ class Zapatilla(models.Model):
     precio=models.IntegerField()
     #Subcarpeta zapatillas de media
     imagen= models.ImageField(upload_to='productos', null=True)
+    date= models.DateField(null=True)
     user = models.ForeignKey(User, null=True, on_delete= models.CASCADE)
     
     def __str__(self):

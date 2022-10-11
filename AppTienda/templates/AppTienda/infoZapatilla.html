@@ -26,7 +26,7 @@
             <p class="card-text">Talle: {{zapatilla.talle}}</p>
             <p class="card-text">Precio: ${{zapatilla.precio}}</p>
             <p class="card-text">Autor: {{ zapatilla.user }}</p>
-            <p class="card-text">Fecha de carga: {{ date_joined }}</p>
+            <p class="card-text">Fecha de carga: {{ zapatilla.date}}</p>
             {% if user.is_superuser %}
             <a class='btn btn-success' href="{% url 'editarZapatilla' zapatilla.id %}">Editar</a>
             <a class='btn btn-danger' href="{% url 'eliminarZapatilla' zapatilla.id %}">Eliminar</a>
