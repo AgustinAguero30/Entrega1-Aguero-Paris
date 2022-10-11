@@ -5,7 +5,7 @@
 <!-- Titulo centrado-->
 {% block titulo %}
     <div class="container">
-        <div class="masthead-subheading">Listado de Zapatillas</div>
+        <div class="masthead-subheading">Zapatillas</div>
     </div>
 {% endblock %}
 
@@ -34,7 +34,7 @@
 
 </div>
 {% else %}
-    <p>No se encontraron zapatillas de esa marca</p>
+    <p>{{ mensaje }}</p>
 {% endif %}
 
 {% endblock %}

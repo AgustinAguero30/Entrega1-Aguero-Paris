@@ -19,18 +19,22 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for usuario in usuarios %}
 
-    <div class="col">
-        <div class="card">
-        <img src=" {{ usuario.avatar }}" height="" alt="" class="card-img-top" alt="...">
-        <div class="card-body">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+        <div class="col-md-4">
+            <img src=" {{ usuario.avatar }}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
             <h5 class="card-title">{{usuario.username}}</h5>
-            <p class="card-text">Nombre: {{usuario.first_name}}</p>
-            <p class="card-text">Apellido: {{usuario.last_name}}</p>
-            <p class="card-text">Email: {{usuario.email}}</p>
+            <p class="card-text"><b>Nombre: </b> {{usuario.first_name}}</p>
+            <p class="card-text"><b>Apellido: </b> {{usuario.last_name}}</p>
+            <p class="card-text"><b>Email: </b> {{usuario.email}}</p>
             {% if user.is_superuser %}
             <a class='btn btn-success' href="{% url 'editarUsuario' usuario.id %}">Editar</a>
             <a class='btn btn-danger' href="{% url 'eliminarUsuario' usuario.id %}">Eliminar</a>
             {% endif %}
+            </div>
         </div>
         </div>
     </div>

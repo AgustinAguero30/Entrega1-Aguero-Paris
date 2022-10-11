@@ -11,22 +11,33 @@
 
 <!-- Nombre Formulario-->
 {% block datos_perfil %}
-<img src="{{ avatar }}" height="60px" alt="">
-<h5 class="card-title">Nombre de Usuario: {{usuario.username}}</h5>
-<p class="card-text">Nombre: {{usuario.first_name}}</p>
-<p class="card-text">Apellido: {{usuario.last_name}}</p>
-<p class="card-text">Email: {{usuario.email}}</p>
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+    <div class="col-md-4">
+        <img src=" {{ avatar }}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+        <div class="card-body">
+
+        <h5 class="card-title" style="text-align: center;">{{usuario.username}}</h5>
+        <p class="card-text"><b>Nombre: </b> {{usuario.first_name}}</p>
+        <p class="card-text"><b>Apellido: </b> {{usuario.last_name}}</p>
+        <p class="card-text"><b>Email: </b> {{usuario.email}}</p>
+        </div>
+    </div>
+    </div>
+</div>
 {% endblock %}
 {% block nombre_formularios %}
-<h2 class="section-heading text-uppercase">Editar datos del perfil</h2>
+<h2 class="section-heading text-uppercase" style="margin-top: 200px;">Editar datos del perfil</h2>
 {% endblock %}
 
 <!-- Mostrar Formularios-->
 
 {% block formularios %}
-<div style="text-align: center;">
+<div style="margin-top: 20px;">
 <form action="{% url 'editarPerfil' %}" method="POST"> {% csrf_token %} <!-- Token de seguridad para evitar fishing-->
-        <table>
+        <table style="text-align: left;">
             {{ formulario.as_table  }}
         </table>
         <br>

@@ -13,9 +13,9 @@ def register(request):
         if form.is_valid():
             username= form.cleaned_data.get('username')
             form.save()
-            return render(request, "AppTienda/inicio.html", {"mensaje": f"usuario {username}"} ) 
+            return render(request, "AppTienda/inicio.html") 
         else:
-            return render(request, "AppRegister/register.html" , { 'formulario':form, "mensaje":"incorrecto" })
+            return render(request, "AppRegister/register.html" , { 'formulario':form, "mensaje":"Campo inncorrecto" })
     else:
         form=UserRegisterForm()
         return render(request, "AppRegister/register.html" , { 'formulario':form })

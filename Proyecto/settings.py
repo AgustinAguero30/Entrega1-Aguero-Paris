@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'AppRegister',
     'AppLogin',
     'AppUsers',
-    'AppMensajeria',
+    # 'AppMensajeria',
+    'AppAboutUs',
 ]
 
 MIDDLEWARE = [

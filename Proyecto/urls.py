@@ -26,7 +26,8 @@ urlpatterns = [
     path('AppRegister/', include("AppRegister.urls")),
     path('AppLogin/', include("AppLogin.urls")),
     path('AppUsers/', include("AppUsers.urls")),
-    path('AppMensajeria/', include("AppMensajeria.urls")),
+    # path('AppMensajeria/', include("AppMensajeria.urls")),
+    path('AppAboutUs/', include("AppAboutUs.urls")),
 
 ]
 

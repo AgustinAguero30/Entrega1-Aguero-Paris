@@ -1,0 +1,40 @@
+{% extends "AppTienda/Principal.html" %} <!-- Declaro que Principal es mi herencia-->
+
+{% load static %} <!-- Obligadamente va-->
+
+<!-- Titulo centrado-->
+{% block titulo %}
+    <div class="container">
+        <div class="masthead-subheading">Listado de Zapatillas</div>
+    </div>
+{% endblock %}
+
+<!-- Mostrar Formularios-->
+
+{% block resultados %}
+
+
+{% if zapatillas %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for zapatilla in zapatillas %}
+
+    <div class="col">
+        <div class="card">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{zapatilla.marca}}</h5>
+            <p class="card-text">Precio: ${{zapatilla.precio}}</p>
+            <a class='btn btn-outline-info' href="{% url 'infoZapatilla' zapatilla.id %}">Leer Mas</a>
+        </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% else %}
+    <p>No se encontraron zapatillas de esa marca</p>
+{% endif %}
+
+{% endblock %}
